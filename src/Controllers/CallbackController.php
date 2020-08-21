@@ -292,6 +292,7 @@ class CallbackController extends Controller
         
             if ($this->aryCaptureParams['payment_type'] == 'TRANSACTION_CANCELLATION')
             {
+		    $this->getLogger(__METHOD__)->error('enter on the transaction cancellation', $this->aryCaptureParams['payment_type']);
                 $transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
                 $callbackComments = sprintf($this->paymentHelper->getTranslatedText('callback_transaction_cancellation',$orderLanguage),date('d.m.Y'), date('H:i:s'));
                 $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, (float) $this->config->get('Novalnet.novalnet_order_cancel_status'));
