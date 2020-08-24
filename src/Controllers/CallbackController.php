@@ -296,7 +296,7 @@ class CallbackController extends Controller
                 $transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
                 $callbackComments = sprintf($this->paymentHelper->getTranslatedText('callback_transaction_cancellation',$orderLanguage),date('d.m.Y'), date('H:i:s'));
                 $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, (float) $this->config->get('Novalnet.novalnet_order_cancel_status'));
-                $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
+                $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, '');
                 $this->sendCallbackMail($callbackComments);
 	       return $this->renderTemplate($callbackComments);
             }
@@ -382,7 +382,7 @@ class CallbackController extends Controller
 		  }
 
                // $this->paymentHelper->createPlentyPayment($paymentData, $partial_refund_amount);
-		$this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
+		$this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, '');
                 $this->sendCallbackMail($callbackComments);
                 return $this->renderTemplate($callbackComments);
             }
@@ -413,7 +413,7 @@ class CallbackController extends Controller
                         $this->paymentHelper->createPlentyPayment($paymentData);
                         
                         $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, $orderStatus);
-                        $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
+                        $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, '');
                         $this->sendCallbackMail($callbackComments);
 
                         return $this->renderTemplate($callbackComments);
@@ -492,7 +492,7 @@ class CallbackController extends Controller
                                         $this->paymentHelper->createPlentyPayment($paymentData);
                     }
                     $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, (float)$orderStatus);
-                    $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
+                    $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, '');
                      $this->sendCallbackMail($callbackComments); 
 		    return $this->renderTemplate($callbackComments);
                 }  elseif('PRZELEWY24' == $this->aryCaptureParams['payment_type'] && (!in_array($this->aryCaptureParams['tid_status'], ['100','86']) || '100' != $this->aryCaptureParams['status'])){
@@ -500,7 +500,7 @@ class CallbackController extends Controller
                     $callbackComments = '</br>' . sprintf($this->paymentHelper->getTranslatedText('callback_transaction_cancellation',$orderLanguage),date('d.m.Y'), date('H:i:s') ) . '</br>';
                     $orderStatus = (float) $this->config->get('Novalnet.novalnet_order_cancel_status');
                     $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, $orderStatus);
-                    $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
+                    $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, '');
                     $this->sendCallbackMail($callbackComments);
                     return $this->renderTemplate($callbackComments);
                 }
