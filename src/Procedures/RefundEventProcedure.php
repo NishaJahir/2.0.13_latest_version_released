@@ -149,7 +149,7 @@ class RefundEventProcedure
 						$paymentData['paid_amount'] = (float) $orderAmount;
 						$paymentData['tid']         = !empty($responseData['tid']) ? $responseData['tid'] : $parentOrder[0]->tid;
 						$paymentData['order_no']    = $order->id;
-						//$paymentData['type']        = 'debit';
+						$paymentData['type']        = 'debit';
 						$paymentData['mop']         = $paymentDetails[0]->mopId;
 						$paymentData['booking_text'] = $transactionComments;  
 						$this->paymentHelper->updatePayments($paymentData['tid'], $responseData['tid_status'], $order->id, $paymentData['booking_text']);
