@@ -153,7 +153,7 @@ class RefundEventProcedure
 						$paymentData['mop']         = $paymentDetails[0]->mopId;
 						$paymentData['booking_text'] = $transactionComments;  
 						$this->paymentHelper->updatePayments($paymentData['tid'], $responseData['tid_status'], $order->id, $paymentData['booking_text']);
-						$this->paymentHelper->createPlentyPayment($paymentData);
+						//$this->paymentHelper->createPlentyPayment($paymentData);
 					}
 
 				} else {
