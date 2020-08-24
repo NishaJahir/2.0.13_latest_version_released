@@ -425,6 +425,7 @@ class CallbackController extends Controller
                 }  elseif (in_array($this->aryCaptureParams['payment_type'], ['CREDITCARD', 'INVOICE_START', 'GUARANTEED_INVOICE', 'DIRECT_DEBIT_SEPA', 'GUARANTEED_DIRECT_DEBIT_SEPA'] )) {
                 
                     $transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
+		  if ($this->aryCaptureParams['tid_status'] !=  $transactionStatus && (in_array($this->aryCaptureParams['tid_status'], ['91', '99', '100']) && in_array($transactionStatus, ['75', '91', '98', '99']))) {
                     $saveAdditionData = false;
 			
 			if ($this->aryCaptureParams['tid_status'] == '100' && $transactionStatus == '98') {
@@ -493,8 +494,14 @@ class CallbackController extends Controller
                     }
                     $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, (float)$orderStatus);
                     $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, '');
-                     $this->sendCallbackMail($callbackComments); 
-		    return $this->renderTemplate($callbackComments);
+                     if (!empty($callbackComments)) {
+	$this->sendCallbackMail($callbackComments); 
+	return $this->renderTemplate($callbackComments);
+} 
+		  }
+	$error = 'Novalnet Callbackscript received. Payment type ( '.$this->aryCaptureParams['payment_type'].' ) is not applicable for this process!';
+	return $this->renderTemplate($error);
+			  
                 }  elseif('PRZELEWY24' == $this->aryCaptureParams['payment_type'] && (!in_array($this->aryCaptureParams['tid_status'], ['100','86']) || '100' != $this->aryCaptureParams['status'])){
                     // Przelewy24 cancel.
                     $callbackComments = '</br>' . sprintf($this->paymentHelper->getTranslatedText('callback_transaction_cancellation',$orderLanguage),date('d.m.Y'), date('H:i:s') ) . '</br>';
