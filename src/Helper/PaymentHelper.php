@@ -607,6 +607,7 @@ class PaymentHelper
      */
     public function updatePayments($tid, $tid_status, $orderId, $comment)
     {    
+        $comment = !empty($comment) ? $comment : $tid;
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         foreach ($payments as $payment) {
         $paymentProperty     = [];
