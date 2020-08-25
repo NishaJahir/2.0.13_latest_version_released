@@ -145,15 +145,15 @@ class RefundEventProcedure
 								$this->paymentHelper->createRefundPayment($paymentDetails, $paymentData, $transactionComments);
 					} else {
 						
-						$paymentData['currency']    = $paymentDetails[0]->currency;
-						$paymentData['paid_amount'] = (float) $orderAmount;
+						//$paymentData['currency']    = $paymentDetails[0]->currency;
+						//$paymentData['paid_amount'] = (float) $orderAmount;
 						$paymentData['tid']         = !empty($responseData['tid']) ? $responseData['tid'] : $parentOrder[0]->tid;
-						$paymentData['order_no']    = $order->id;
-						$paymentData['type']        = 'debit';
-						$paymentData['mop']         = $paymentDetails[0]->mopId;
-						$paymentData['booking_text'] = $transactionComments;  
+						//$paymentData['order_no']    = $order->id;
+						//$paymentData['type']        = 'debit';
+						//$paymentData['mop']         = $paymentDetails[0]->mopId;
+						//$paymentData['booking_text'] = $transactionComments;  
 						$this->paymentHelper->updatePayments($paymentData['tid'], $responseData['tid_status'], $order->id);
-						$this->paymentHelper->createPlentyPayment($paymentData);
+						//$this->paymentHelper->createPlentyPayment($paymentData);
 					}
 
 				} else {
