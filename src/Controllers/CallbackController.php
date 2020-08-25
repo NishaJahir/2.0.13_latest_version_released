@@ -382,7 +382,7 @@ class CallbackController extends Controller
 		  }
 		$this->getLogger(__METHOD__)->error('test', $this->aryCaptureParams['tid']);
                 //$this->paymentHelper->createPlentyPayment($paymentData, $partial_refund_amount);
-		$this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
+		$this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, true, $partial_refund_amount);
                 $this->sendCallbackMail($callbackComments);
                 return $this->renderTemplate($callbackComments);
             }
