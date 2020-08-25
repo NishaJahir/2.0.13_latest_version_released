@@ -605,7 +605,7 @@ class PaymentHelper
      * @param int $orderId
      * @return null
      */
-    public function updatePayments($tid, $tid_status, $orderId)
+    public function updatePayments($tid, $tid_status, $orderId, $refund_process=false, $partial_refund=false)
     {    
         
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
