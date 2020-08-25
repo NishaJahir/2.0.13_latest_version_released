@@ -620,6 +620,7 @@ class PaymentHelper
         $payment->properties = $paymentProperty; 
             if($refund_process) {
             $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+            $payment->unaccountable = 0;
             }
             $this->paymentRepository->updatePayment($payment);
         }
