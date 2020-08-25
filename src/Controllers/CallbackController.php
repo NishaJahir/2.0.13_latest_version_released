@@ -369,13 +369,15 @@ class CallbackController extends Controller
 		$paymentData['tid_status']  = $this->aryCaptureParams['tid_status'];
 		    
 		    $total_order_details = $this->transaction->getTransactionData('orderNo', $nnTransactionHistory->orderNo);
-		
+		$this->getLogger(__METHOD__)->error('test1', $total_order_details);
 		    $totalCallbackAmount = 0;
 		    foreach($total_order_details as $total_order_detail) {
 			     
 			    if ($total_order_detail->referenceTid != $total_order_detail->tid) {
 				    
 				    $totalCallbackAmount += $total_order_detail->callbackAmount;
+				    $this->getLogger(__METHOD__)->error('test2', $totalCallbackAmount);
+				    $this->getLogger(__METHOD__)->error('test3',  $this->aryCaptureParams['amount']);
 				    $partial_refund_amount = ($nnTransactionHistory->order_total_amount > ($totalCallbackAmount + $this->aryCaptureParams['amount']) )? true : false;
 			    }
 			    
