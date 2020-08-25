@@ -688,7 +688,8 @@ class PaymentHelper
         $payment->updateOrderPaymentStatus = true;
         $payment->mopId = (int) $mop;
         $payment->transactionType = Payment::TRANSACTION_TYPE_BOOKED_POSTING;
-        $payment->status =  ($partial_refund_amount == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+        //$payment->status =  ($partial_refund_amount == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+        $payment->status = Payment::STATUS_CAPTURED;
         $payment->currency = $currency;
         $payment->amount = $paymentData['refunded_amount'];
         $payment->receivedAt = date('Y-m-d H:i:s');
