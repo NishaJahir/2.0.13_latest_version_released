@@ -143,6 +143,7 @@ class RefundEventProcedure
 						 
 						 $this->saveTransactionLog($paymentRequestData, $paymentData);
 								$this->paymentHelper->createRefundPayment($paymentDetails, $paymentData, $transactionComments);
+							       
 					} else {
 						
 						//$paymentData['currency']    = $paymentDetails[0]->currency;
