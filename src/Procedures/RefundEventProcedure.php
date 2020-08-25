@@ -152,6 +152,7 @@ class RefundEventProcedure
 						//$paymentData['type']        = 'debit';
 						//$paymentData['mop']         = $paymentDetails[0]->mopId;
 						//$paymentData['booking_text'] = $transactionComments;  
+						$this->getLogger(__METHOD__)->error('refundf', $paymentData['tid']);
 						$this->paymentHelper->updatePayments($parentOrder[0]->tid, $responseData['tid_status'], $order->id);
 						//$this->paymentHelper->createPlentyPayment($paymentData);
 					}
