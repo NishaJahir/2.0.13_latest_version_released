@@ -607,6 +607,7 @@ class PaymentHelper
      */
     public function updatePayments($tid, $tid_status, $orderId, $refund_process=false, $partial_refund=false)
     {    
+        $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         foreach ($payments as $payment) {
          if($refund_process) {
