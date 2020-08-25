@@ -605,24 +605,25 @@ class PaymentHelper
      * @param int $orderId
      * @return null
      */
-    public function updatePayments($tid, $tid_status, $orderId)
+    public function updatePayments($tid, $tid_status, $orderId, $refund_process=false, $partial_refund=false)
     {    
-        //$paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
+        $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
+        
         foreach ($payments as $payment) {
-         //if($refund_process) {
-        // $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
-         //$payment->updateOrderPaymentStatus = true;
-         //}
         $paymentProperty     = [];
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_BOOKING_TEXT, $tid);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_TRANSACTION_ID, $tid);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_ORIGIN, Payment::ORIGIN_PLUGIN);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
-        $payment->properties = $paymentProperty;   
-    
-        $this->paymentRepository->updatePayment($payment);
-        }      
+        $payment->properties = $paymentProperty; 
+            if($refund_process) {
+            $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+            //$payment->updateOrderPaymentStatus = true;
+            }
+            $this->paymentRepository->updatePayment($payment);
+        }
+        
     }
     
     /**
