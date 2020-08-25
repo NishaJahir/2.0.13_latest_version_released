@@ -611,6 +611,7 @@ class PaymentHelper
         foreach ($payments as $payment) {
          if($refund_process) {
          $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+         $payment->updateOrderPaymentStatus = true;
          }
         $paymentProperty     = [];
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_BOOKING_TEXT, $tid);
