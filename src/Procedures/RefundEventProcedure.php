@@ -141,7 +141,7 @@ class RefundEventProcedure
 					
 					if ($order->typeId == OrderType::TYPE_CREDIT_NOTE) {
 						 
-						 $this->saveTransactionLog($paymentRequestData, $paymentData);
+						 //$this->saveTransactionLog($paymentRequestData, $paymentData);
 								$this->paymentHelper->createRefundPayment($paymentDetails, $paymentData, $transactionComments);
 							       
 					} else {
