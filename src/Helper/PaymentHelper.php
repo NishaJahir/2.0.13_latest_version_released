@@ -611,22 +611,22 @@ class PaymentHelper
         $this->getLogger(__METHOD__)->error('payament statsu322222222222', $partial_refund);
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
-        foreach ($payments as $payment) {
-        
+        //foreach ($payments as $payment) {
+        $finalPaymentDetails = end($payments);
         $paymentProperty     = [];
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_BOOKING_TEXT, $tid);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_TRANSACTION_ID, $tid);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_ORIGIN, Payment::ORIGIN_PLUGIN);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
-        $payment->properties = $paymentProperty; 
+        $finalPaymentDetails->properties = $paymentProperty; 
         if ($refund_process == true) {
         
-        $payment->status =  ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
-        $this->getLogger(__METHOD__)->error('payament statsu', $payment->status);
+        $finalPaymentDetails->status =  ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+        $this->getLogger(__METHOD__)->error('payament statsu', $finalPaymentDetails->status);
         }
-        $this->paymentRepository->updatePayment($payment);
+        $this->paymentRepository->updatePayment($finalPaymentDetails);
         
-        }
+        //}
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         $this->getLogger(__METHOD__)->error('check2222222', $payments);
     }
