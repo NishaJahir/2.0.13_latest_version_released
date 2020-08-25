@@ -609,7 +609,7 @@ class PaymentHelper
     {    
         
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
-        
+        $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
         foreach ($payments as $payment) {
         
         $paymentProperty     = [];
@@ -618,7 +618,7 @@ class PaymentHelper
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_ORIGIN, Payment::ORIGIN_PLUGIN);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
         $payment->properties = $paymentProperty; 
-            
+        $payment->status =  Payment::STATUS_REFUNDED;
         $this->paymentRepository->updatePayment($payment);
         
         }
@@ -626,16 +626,6 @@ class PaymentHelper
         $this->getLogger(__METHOD__)->error('check2222222', $payments);
     }
     
-    public function updatePaymentStatus($tid) {
-        $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
-       $payments = $this->paymentRepository->getPaymentsByPropertyTypeAndValue(PaymentProperty::TYPE_TRANSACTION_ID, $tid, 1);
-        
-        foreach ($payments as $payment) {
-            $payment->status = 'refunded';
-            $this->paymentRepository->updatePayment($payment);
-        }
-        $this->getLogger(__METHOD__)->error('newwww', $payments);
-    }
     
     /**
       * Build cash payment transaction comments
