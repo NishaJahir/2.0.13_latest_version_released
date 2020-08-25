@@ -605,9 +605,9 @@ class PaymentHelper
      * @param int $orderId
      * @return null
      */
-    public function updatePayments($tid, $tid_status, $orderId, $refund_process=false, $partial_refund=false)
+    public function updatePayments($tid, $tid_status, $orderId)
     {    
-        $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
+        
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         
         foreach ($payments as $payment) {
@@ -618,17 +618,23 @@ class PaymentHelper
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_ORIGIN, Payment::ORIGIN_PLUGIN);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
         $payment->properties = $paymentProperty; 
-            if($refund_process) {
-            //$payment->type = 'debit';
-            $payment->updateOrderPaymentStatus = true;
-            $payment->parentId = $payment->id;
-            $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
-           // $payment->unaccountable = 0;
-            }
-            $this->paymentRepository->updatePayment($payment);
+            
+        $this->paymentRepository->updatePayment($payment);
+        
         }
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         $this->getLogger(__METHOD__)->error('check2222222', $payments);
+    }
+    
+    public function updatePaymentStatus($tid) {
+        $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
+       $payments = $this->paymentRepository->getPaymentsByPropertyTypeAndValue(PaymentProperty::TYPE_TRANSACTION_ID, $tid, 1);
+        
+        foreach ($payments as $payment) {
+            $payment->status = 'refunded';
+            $this->paymentRepository->updatePayment($payment);
+        }
+        $this->getLogger(__METHOD__)->error('newwww', $payments);
     }
     
     /**
