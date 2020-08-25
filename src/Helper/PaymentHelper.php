@@ -205,6 +205,7 @@ class PaymentHelper
          if(!empty($requestData['type']) && $requestData['type'] == 'debit')
         {
             $payment->type = $requestData['type'];
+             $payment->unaccountable = 0;
             $payment->status = ($partial_refund == true )  ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
         }
         
