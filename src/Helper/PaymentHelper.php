@@ -619,8 +619,9 @@ class PaymentHelper
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
         $payment->properties = $paymentProperty; 
             if($refund_process) {
+            $payment->type = 'debit';
             $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
-            $payment->unaccountable = 1;
+            $payment->unaccountable = 0;
             }
             $this->paymentRepository->updatePayment($payment);
         }
