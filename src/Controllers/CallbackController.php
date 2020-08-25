@@ -305,6 +305,7 @@ class CallbackController extends Controller
                 // Credit entry for the payment types Invoice, Prepayment and Cashpayment.
                 if(in_array($this->aryCaptureParams['payment_type'], ['INVOICE_CREDIT', 'CASHPAYMENT_CREDIT', 'ONLINE_TRANSFER_CREDIT']))
                 {
+			$nnTransactionHistory->additional_info = json_encode(array('type'=>'credit'));
                         if ($nnTransactionHistory->order_paid_amount < $nnTransactionHistory->order_total_amount)
                         {
                         
@@ -315,7 +316,7 @@ class CallbackController extends Controller
                                 $orderStatus = $this->config->get('Novalnet.novalnet_' . $paymentConfigName . '_callback_order_status');
                                 $this->paymentHelper->updateOrderStatus($nnTransactionHistory->orderNo, (float)$orderStatus);
                             }
-
+			    
                             $this->saveTransactionLog($nnTransactionHistory);
 
                             $paymentData['currency']    = $this->aryCaptureParams['currency'];
@@ -355,7 +356,7 @@ class CallbackController extends Controller
             }
             else if($this->getPaymentTypeLevel() == 1 && $this->aryCaptureParams['tid_status'] == 100)
             {
-                
+                $nnTransactionHistory->additional_info = json_encode(array('type'=>'debit'));
                 $callbackComments = (in_array($this->aryCaptureParams['payment_type'], ['CREDITCARD_BOOKBACK', 'PAYPAL_BOOKBACK', 'REFUND_BY_BANK_TRANSFER_EU', 'PRZELEWY24_REFUND', 'CASHPAYMENT_REFUND', 'GUARANTEED_INVOICE_BOOKBACK', 'GUARANTEED_SEPA_BOOKBACK'])) ? sprintf($this->paymentHelper->getTranslatedText('callback_bookback_execution',$orderLanguage), $nnTransactionHistory->tid, sprintf('%0.2f', ($this->aryCaptureParams['amount']/100)) , $this->aryCaptureParams['currency'], date('Y-m-d H:i:s'), $this->aryCaptureParams['tid'] ) . '</br>' : sprintf( $this->paymentHelper->getTranslatedText('callback_chargeback_execution',$orderLanguage), $nnTransactionHistory->tid, sprintf( '%0.2f',( $this->aryCaptureParams['amount']/100) ), $this->aryCaptureParams['currency'], date('Y-m-d H:i:s'), $this->aryCaptureParams['tid'] ) . '</br>';
                 
                 $this->saveTransactionLog($nnTransactionHistory);
@@ -370,18 +371,29 @@ class CallbackController extends Controller
 		    
 		    $total_order_details = $this->transaction->getTransactionData('orderNo', $nnTransactionHistory->orderNo);
 		$this->getLogger(__METHOD__)->error('test1', $total_order_details);
-		    $totalCallbackAmount = 0;
+		    
+		    $totalCallbackDebitAmount = 0;
+		    
 		    foreach($total_order_details as $total_order_detail) {
 			     
 			    if ($total_order_detail->referenceTid != $total_order_detail->tid) {
+				 if(!empty($total_order_detail->additional_info)) {
+					$additional_info = json_decode($total_order_detail->additional_info, true);
+					 if($additional_info['type'] == 'debit') {
+						$totalCallbackDebitAmount += $total_order_detail->callbackAmount;  
+					 }
+					 
+				 } else {
+					 $totalCallbackDebitAmount += $total_order_detail->callbackAmount;
+				 }
 				    
-				    $totalCallbackAmount += $total_order_detail->callbackAmount;
 				    $this->getLogger(__METHOD__)->error('test2', $totalCallbackAmount);
 				    $this->getLogger(__METHOD__)->error('test3',  $this->aryCaptureParams['amount']);
-				    $partial_refund_amount = ($nnTransactionHistory->order_total_amount > ($totalCallbackAmount + $this->aryCaptureParams['amount']) )? true : false;
+				   
 			    }
 			    
 		  }
+		    $partial_refund_amount = ($nnTransactionHistory->order_total_amount > ($totalCallbackDebitAmount) ) ? true : false;
 		$this->getLogger(__METHOD__)->error('test', $partial_refund_amount);
                
 		$this->paymentHelper->updatePayments($this->aryCaptureParams['shop_tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, true, $partial_refund_amount);
