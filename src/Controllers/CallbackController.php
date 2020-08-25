@@ -381,7 +381,7 @@ class CallbackController extends Controller
 			    
 		  }
 		$this->getLogger(__METHOD__)->error('test', $partial_refund_amount);
-                //$this->paymentHelper->createPlentyPayment($paymentData, $partial_refund_amount);
+               
 		$this->paymentHelper->updatePayments($this->aryCaptureParams['shop_tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo, true, $partial_refund_amount);
                 $this->sendCallbackMail($callbackComments);
                 return $this->renderTemplate($callbackComments);
@@ -425,6 +425,7 @@ class CallbackController extends Controller
                 }  elseif (in_array($this->aryCaptureParams['payment_type'], ['CREDITCARD', 'INVOICE_START', 'GUARANTEED_INVOICE', 'DIRECT_DEBIT_SEPA', 'GUARANTEED_DIRECT_DEBIT_SEPA'] )) {
                 
                     $transactionStatus = $this->payment_details($nnTransactionHistory->orderNo);
+			$this->getLogger(__METHOD__)->error('initial', $this->aryCaptureParams['payment_type']);
 		if ($this->aryCaptureParams['tid_status'] !=  $transactionStatus && (in_array($this->aryCaptureParams['tid_status'], ['91', '99', '100']) && in_array($transactionStatus, ['75', '91', '98', '99']))) {
                     $saveAdditionData = false;
 			
