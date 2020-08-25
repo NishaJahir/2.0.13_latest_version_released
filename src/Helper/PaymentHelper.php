@@ -607,7 +607,8 @@ class PaymentHelper
      */
     public function updatePayments($tid, $tid_status, $orderId, $refund_process=false, $partial_refund=false)
     {    
-        
+        $this->getLogger(__METHOD__)->error('payament1', $refund_process);
+        $this->getLogger(__METHOD__)->error('payament statsu322222222222', $partial_refund);
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         $paymentCreate = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
         foreach ($payments as $payment) {
@@ -618,7 +619,11 @@ class PaymentHelper
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_ORIGIN, Payment::ORIGIN_PLUGIN);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
         $payment->properties = $paymentProperty; 
-        $payment->status =  Payment::STATUS_REFUNDED;
+        if ($refund_process == true) {
+        
+        $payment->status =  ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
+        $this->getLogger(__METHOD__)->error('payament statsu', $payment->status);
+        }
         $this->paymentRepository->updatePayment($payment);
         
         }
