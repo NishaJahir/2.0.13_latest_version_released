@@ -611,7 +611,7 @@ class PaymentHelper
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
         
         foreach ($payments as $payment) {
-        $payment->updateOrderPaymentStatus = true;
+        
         $paymentProperty     = [];
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_BOOKING_TEXT, $tid);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_TRANSACTION_ID, $tid);
@@ -619,9 +619,11 @@ class PaymentHelper
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_EXTERNAL_TRANSACTION_STATUS, $tid_status);
         $payment->properties = $paymentProperty; 
             if($refund_process) {
-            $payment->type = 'debit';
+            //$payment->type = 'debit';
+            $payment->updateOrderPaymentStatus = true;
+            $payment->parentId = $payment->id;
             $payment->status = ($partial_refund == true) ? Payment::STATUS_PARTIALLY_REFUNDED : Payment::STATUS_REFUNDED;
-            $payment->unaccountable = 0;
+           // $payment->unaccountable = 0;
             }
             $this->paymentRepository->updatePayment($payment);
         }
