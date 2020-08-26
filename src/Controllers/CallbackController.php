@@ -379,7 +379,7 @@ class CallbackController extends Controller
 			    if ($total_order_detail->referenceTid != $total_order_detail->tid) {
 				 if(!empty($total_order_detail->additionalInfo)) {
 					$additionalInfo = json_decode($total_order_detail->additionalInfo, true);
-					 if(additionalInfo['type'] == 'debit') {
+					 if($additionalInfo['type'] == 'debit') {
 						$totalCallbackDebitAmount += $total_order_detail->callbackAmount;  
 					 }
 					 
