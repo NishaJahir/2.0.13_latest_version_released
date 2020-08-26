@@ -305,7 +305,7 @@ class CallbackController extends Controller
                 // Credit entry for the payment types Invoice, Prepayment and Cashpayment.
                 if(in_array($this->aryCaptureParams['payment_type'], ['INVOICE_CREDIT', 'CASHPAYMENT_CREDIT', 'ONLINE_TRANSFER_CREDIT']))
                 {
-			$nnTransactionHistory->additional_info = json_encode(array('type'=>'credit'));
+			$nnTransactionHistory->additionalInfo = ['type' => 'credit'];
                         if ($nnTransactionHistory->order_paid_amount < $nnTransactionHistory->order_total_amount)
                         {
                         
