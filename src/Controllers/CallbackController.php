@@ -387,7 +387,7 @@ class CallbackController extends Controller
 					 $totalCallbackDebitAmount += $total_order_detail->callbackAmount;
 				 }
 				    
-				    $this->getLogger(__METHOD__)->error('test2', $totalCallbackAmount);
+				    $this->getLogger(__METHOD__)->error('test2', $totalCallbackDebitAmount);
 				    $this->getLogger(__METHOD__)->error('test3',  $this->aryCaptureParams['amount']);
 				   
 			    }
