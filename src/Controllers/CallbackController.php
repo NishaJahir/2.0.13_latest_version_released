@@ -387,12 +387,14 @@ class CallbackController extends Controller
 					 $totalCallbackDebitAmount += $total_order_detail->callbackAmount;
 				 }
 				    
-				    $this->getLogger(__METHOD__)->error('test2', $totalCallbackDebitAmount);
-				    $this->getLogger(__METHOD__)->error('test3',  $this->aryCaptureParams['amount']);
+				   
 				   
 			    }
 			    
 		  }
+		    
+		     $this->getLogger(__METHOD__)->error('newwww', $totalCallbackDebitAmount);
+				    $this->getLogger(__METHOD__)->error('test3',  $this->aryCaptureParams['amount']);
 		    $partial_refund_amount = ($nnTransactionHistory->order_total_amount > ($totalCallbackDebitAmount) ) ? true : false;
 		$this->getLogger(__METHOD__)->error('test', $partial_refund_amount);
                
