@@ -356,7 +356,7 @@ class CallbackController extends Controller
             }
             else if($this->getPaymentTypeLevel() == 1 && $this->aryCaptureParams['tid_status'] == 100)
             {
-                $nnTransactionHistory->additionalInfo = json_encode(array('type'=>'debit'));
+                $nnTransactionHistory->additionalInfo = ['type'=>'debit'];
                 $callbackComments = (in_array($this->aryCaptureParams['payment_type'], ['CREDITCARD_BOOKBACK', 'PAYPAL_BOOKBACK', 'REFUND_BY_BANK_TRANSFER_EU', 'PRZELEWY24_REFUND', 'CASHPAYMENT_REFUND', 'GUARANTEED_INVOICE_BOOKBACK', 'GUARANTEED_SEPA_BOOKBACK'])) ? sprintf($this->paymentHelper->getTranslatedText('callback_bookback_execution',$orderLanguage), $nnTransactionHistory->tid, sprintf('%0.2f', ($this->aryCaptureParams['amount']/100)) , $this->aryCaptureParams['currency'], date('Y-m-d H:i:s'), $this->aryCaptureParams['tid'] ) . '</br>' : sprintf( $this->paymentHelper->getTranslatedText('callback_chargeback_execution',$orderLanguage), $nnTransactionHistory->tid, sprintf( '%0.2f',( $this->aryCaptureParams['amount']/100) ), $this->aryCaptureParams['currency'], date('Y-m-d H:i:s'), $this->aryCaptureParams['tid'] ) . '</br>';
                 
                 $this->saveTransactionLog($nnTransactionHistory);
@@ -380,6 +380,7 @@ class CallbackController extends Controller
 				 if(!empty($total_order_detail->additionalInfo)) {
 					 $this->getLogger(__METHOD__)->error('enter2', $total_order_detail->additionalInfo);
 					$additionalInfo = json_decode($total_order_detail->additionalInfo, true);
+					 $this->getLogger(__METHOD__)->error('json decode', $additionalInfo);
 					 if($additionalInfo['type'] == 'debit') {
 						  $this->getLogger(__METHOD__)->error('debit', $total_order_detail->additionalInfo);
 						$totalCallbackDebitAmount += $total_order_detail->callbackAmount;  
