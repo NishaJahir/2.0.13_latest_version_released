@@ -375,15 +375,19 @@ class CallbackController extends Controller
 		    $totalCallbackDebitAmount = 0;
 		    
 		    foreach($total_order_details as $total_order_detail) {
-			     
+			     $this->getLogger(__METHOD__)->error('enter1', $total_order_detail);
 			    if ($total_order_detail->referenceTid != $total_order_detail->tid) {
 				 if(!empty($total_order_detail->additionalInfo)) {
+					 $this->getLogger(__METHOD__)->error('enter2', $total_order_detail->additionalInfo);
 					$additionalInfo = json_decode($total_order_detail->additionalInfo, true);
 					 if($additionalInfo['type'] == 'debit') {
+						  $this->getLogger(__METHOD__)->error('debit', $total_order_detail->additionalInfo);
 						$totalCallbackDebitAmount += $total_order_detail->callbackAmount;  
+						 $this->getLogger(__METHOD__)->error('debit2', $totalCallbackDebitAmount);
 					 }
 					 
 				 } else {
+					 $this->getLogger(__METHOD__)->error('enter3', $total_order_detail->additionalInfo);
 					 $totalCallbackDebitAmount += $total_order_detail->callbackAmount;
 				 }
 				    
