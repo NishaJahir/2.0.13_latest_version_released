@@ -83,6 +83,7 @@ class RefundEventProcedure
 			$order->id = $parent_order_id;
 		}
 	   } 
+	     $this->getLogger(__METHOD__)->error('Order details', $order);
 	   $this->getLogger(__METHOD__)->error('order ID', $order->id);
         $payments = pluginApp(\Plenty\Modules\Payment\Contracts\PaymentRepositoryContract::class);  
 	   $paymentDetails = $payments->getPaymentsByOrderId($order->id);
