@@ -83,14 +83,15 @@ class RefundEventProcedure
 			$order->id = $parent_order_id;
 		}
 	   } 
-	   
+	   $this->getLogger(__METHOD__)->error('order ID', $order->id);
         $payments = pluginApp(\Plenty\Modules\Payment\Contracts\PaymentRepositoryContract::class);  
 	   $paymentDetails = $payments->getPaymentsByOrderId($order->id);
+	    $this->getLogger(__METHOD__)->error('payment details', $paymentDetails);
 	   $orderAmount = (float) $order->amounts[0]->invoiceTotal;
 	   foreach ($paymentDetails as $paymentDetail) {
 		    $parent_order_amount = (float) $paymentDetail->amount;
 	    }  
-	    
+	    $this->getLogger(__METHOD__)->error('child amount', $parent_order_amount);
 	   $paymentKey = $paymentDetails[0]->method->paymentKey;
 	   $key = $this->paymentService->getkeyByPaymentKey($paymentKey);
 	   $parentOrder = $this->transaction->getTransactionData('orderNo', $order->id);
