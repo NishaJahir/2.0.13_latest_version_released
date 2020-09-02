@@ -723,7 +723,7 @@ class PaymentHelper
             /** @var \Plenty\Modules\Authorization\Services\AuthHelper $authHelper */
             $authHelper = pluginApp(AuthHelper::class);
             $updateOrderResponse = $authHelper->processUnguarded(
-                function () {
+                function () use ($orderId, $amount) {
                     
                 return $this->orderRepository->updateOrder(['invoiceTotal' => $amount ,'id'=> $orderId], $orderId );
                 }
