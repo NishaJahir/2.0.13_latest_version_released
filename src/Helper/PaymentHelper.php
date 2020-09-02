@@ -715,5 +715,10 @@ class PaymentHelper
         $this->assignPlentyPaymentToPlentyOrder($paymentObj, (int)$paymentData['child_order_id']);
     }
     
+    public function updatePreviousOrder($orderId, $amount) {
+        $this->getLogger(__METHOD__)->error('amount', $amount);
+        $this->orderRepository ->updateOrder(['amount' => $amount ], $orderId );
+    }
+    
    
 }
