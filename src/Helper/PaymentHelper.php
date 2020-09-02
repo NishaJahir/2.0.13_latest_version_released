@@ -31,6 +31,7 @@ use Plenty\Modules\Order\Shipping\Countries\Contracts\CountryRepositoryContract;
 use Plenty\Modules\Frontend\Session\Storage\Contracts\FrontendSessionStorageFactoryContract;
 use Novalnet\Constants\NovalnetConstants;
 use Novalnet\Services\TransactionService;
+use Plenty\Modules\Order\Models\OrderAmount;
 
 /**
  * Class PaymentHelper
@@ -721,20 +722,18 @@ class PaymentHelper
         try {
             /** @var \Plenty\Modules\Authorization\Services\AuthHelper $authHelper */
             $authHelper = pluginApp(AuthHelper::class);
-            $authHelper->processUnguarded(
-                    function () use ($orderId, $amount) {
-                    //unguarded
-                    $order = $this->orderRepository->findOrderById($orderId);
-
-                    if (!is_null($order) && $order instanceof Order) {
-                        $status['amount'] = (float) $amount;
-                        $this->orderRepository->updateOrder($status, $orderId);
-                    }
+            $updateOrderResponse = $authHelper->processUnguarded(
+                function () {
+                    
+                return $this->orderRepository->updateOrder(['invoiceTotal' => $amount ,'id'=> $orderId], $orderId )
                 }
-            );
+                );
         } catch (\Exception $e) {
             $this->getLogger(__METHOD__)->error('Novalnet::updateOrderAmount', $e);
         }
+        
+        $order = $this->orderRepository->findOrderById($orderId);
+        $this->getLogger(__METHOD__)->error('NNNNNNNNNNNNNNNNNNNNN', $order);
     }
     
    
