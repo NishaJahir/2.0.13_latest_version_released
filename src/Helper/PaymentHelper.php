@@ -715,9 +715,26 @@ class PaymentHelper
         $this->assignPlentyPaymentToPlentyOrder($paymentObj, (int)$paymentData['child_order_id']);
     }
     
-    public function updatePreviousOrder($orderId, $amount) {
+    public function updateOrderAmount($orderId, $amount)
+    {
         $this->getLogger(__METHOD__)->error('amount', $amount);
-        $this->orderRepository ->updateOrder(['amount' => $amount ], $orderId );
+        try {
+            /** @var \Plenty\Modules\Authorization\Services\AuthHelper $authHelper */
+            $authHelper = pluginApp(AuthHelper::class);
+            $authHelper->processUnguarded(
+                    function () use ($orderId, $amount) {
+                    //unguarded
+                    $order = $this->orderRepository->findOrderById($orderId);
+
+                    if (!is_null($order) && $order instanceof Order) {
+                        $status['amount'] = (float) $amount;
+                        $this->orderRepository->updateOrder($status, $orderId);
+                    }
+                }
+            );
+        } catch (\Exception $e) {
+            $this->getLogger(__METHOD__)->error('Novalnet::updateOrderAmount', $e);
+        }
     }
     
    
