@@ -143,6 +143,8 @@ class RefundEventProcedure
 						 
 						 //$this->saveTransactionLog($paymentRequestData, $paymentData);
 								$this->paymentHelper->createRefundPayment($paymentDetails, $paymentData, $transactionComments);
+						$updatedAmount = (float) $parent_order_amount - (float) $paymentData['refunded_amount'];
+						$this->paymentHelper->updatePreviousOrder($order->id, (float) $updatedAmount);
 							       
 					} else {
 						
