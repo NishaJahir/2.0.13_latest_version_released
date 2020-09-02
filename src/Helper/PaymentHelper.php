@@ -725,7 +725,7 @@ class PaymentHelper
             $updateOrderResponse = $authHelper->processUnguarded(
                 function () {
                     
-                return $this->orderRepository->updateOrder(['invoiceTotal' => $amount ,'id'=> $orderId], $orderId )
+                return $this->orderRepository->updateOrder(['invoiceTotal' => $amount ,'id'=> $orderId], $orderId );
                 }
                 );
         } catch (\Exception $e) {
