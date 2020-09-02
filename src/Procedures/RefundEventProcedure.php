@@ -91,11 +91,12 @@ class RefundEventProcedure
 	   $orderAmount = (float) $order->amounts[0]->invoiceTotal;
 	   foreach ($paymentDetails as $paymentDetail) {
 		    $parent_order_amount = (float) $paymentDetail->amount;
-	    }  
+	    } 
 	    $this->getLogger(__METHOD__)->error('child amount', $parent_order_amount);
 	   $paymentKey = $paymentDetails[0]->method->paymentKey;
 	   $key = $this->paymentService->getkeyByPaymentKey($paymentKey);
 	   $parentOrder = $this->transaction->getTransactionData('orderNo', $order->id);
+	    $parent_order_amount = $parentOrder[0]->amount;
 	    foreach ($paymentDetails[0]->properties as $paymentStatus)
 		{
 		    if($paymentStatus->typeId == 30)
@@ -104,7 +105,7 @@ class RefundEventProcedure
 		  }	
 		}
 	    if ($status == 100)   
-	    { 
+	    {
 		    
 			try {
 				$paymentRequestData = [
@@ -148,7 +149,7 @@ class RefundEventProcedure
 						$this->getLogger(__METHOD__)->error('parent amount', $parent_order_amount);
 						$this->getLogger(__METHOD__)->error('child amount', $orderAmount);
 						$updatedAmount =  $parent_order_amount - $orderAmount;
-						$this->paymentHelper->updatePreviousOrder($order->id, (float) $updatedAmount);
+						//$this->paymentHelper->updatePreviousOrder($order->id, (float) $updatedAmount);
 							       
 					} else {
 						
