@@ -745,7 +745,7 @@ class PaymentHelper
             $authHelper = pluginApp(AuthHelper::class);
             $updateOrderResponse = $authHelper->processUnguarded(
                 function () use ($orderId, $amount) {
-                                 $order["orderItems"] => [ "id" => $orderId, "amounts" => [ "priceOriginalGross" => $amount ] ];
+                                 $order["orderItems"] = [ "id" => $orderId, "amounts" => [ "priceOriginalGross" => $amount ] ];
                     
                  $this->orderRepository->updateOrder($order, $orderId );
                 }
