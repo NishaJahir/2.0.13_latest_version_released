@@ -736,5 +736,26 @@ class PaymentHelper
         $this->getLogger(__METHOD__)->error('NNNNNNNNNNNNNNNNNNNNN', $order);
     }
     
+    public function updateOrderItem ($amount, $orderId) {
+        $this->getLogger(__METHOD__)->error('amount price', $amount);
+        $this->getLogger(__METHOD__)->error('order Id', $orderId);
+        
+            try {
+            /** @var \Plenty\Modules\Authorization\Services\AuthHelper $authHelper */
+            $authHelper = pluginApp(AuthHelper::class);
+            $updateOrderResponse = $authHelper->processUnguarded(
+                function () use ($orderId, $amount) {
+                                 $orderItem = [ "orderItems" => [ "id" => $orderId, "amounts" => [ "priceOriginalGross" => $amount ] ] ];
+                    
+                 $this->orderRepository->updateOrder($orderItem, $orderId );
+                }
+                );
+        } catch (\Exception $e) {
+            $this->getLogger(__METHOD__)->error('Novalnet::updateOrderAmount', $e);
+        }
+        
+        
+    }
+    
    
 }
