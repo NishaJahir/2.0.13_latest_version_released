@@ -150,7 +150,7 @@ class RefundEventProcedure
 						$this->getLogger(__METHOD__)->error('child amount', (float) $orderAmount);
 						$updatedAmount =  ( (float) ( $parent_order_amount / 100 ) ) - (float) $orderAmount;
 						$updateOrder = $this->paymentHelper->updateOrderAmount($order->id, (float) $updatedAmount);
-						$this->getLogger(__METHOD__)->error('NNNNNNNNNRRRRRRRRRRRRRRRRRRRRR', $updateOrder); 
+						//$this->getLogger(__METHOD__)->error('NNNNNNNNNRRRRRRRRRRRRRRRRRRRRR', $updateOrder); 
 							       
 					} else {
 						
@@ -163,7 +163,8 @@ class RefundEventProcedure
 						//$paymentData['booking_text'] = $transactionComments;  
 						$this->getLogger(__METHOD__)->error('refundf', $paymentData['tid']);
 						$this->paymentHelper->updatePayments($parentOrder[0]->tid, $responseData['tid_status'], $order->id, true);
-						$this->paymentHelper->updateOrderItem((float) '0.50', $order->id);
+						$updateOrder = $this->paymentHelper->updateOrderItem((float) '0.50', $order->id);
+						$this->getLogger(__METHOD__)->error('NNNNNNNNNRRRRRRRRRRRRRRRRRRRRR', $updateOrder); 
 						//$this->paymentHelper->createPlentyPayment($paymentData);
 					}
 
