@@ -748,17 +748,18 @@ class PaymentHelper
                     //unguarded
                     $order = $this->orderRepository->findOrderById($orderId);
                     if (!is_null($order) && $order instanceof Order) {
-                        $this->orderRepository->updateOrder([ "amounts" => ["orderId" => $orderId, "invoiceTotal" => $amount] ], $orderId);
+                        $this->getLogger(__METHOD__)->error('enter', $order);
+                       return $this->orderRepository->updateOrder([ "amounts" => ["orderId" => $orderId, "invoiceTotal" => 5.00] ], $orderId);
                     }
                 }
             );
                 
-                $order = $this->orderRepository->findOrderById($orderId);
-        $this->getLogger(__METHOD__)->error('RRRRRRRRRRRRRRRRRRRRR', $order);
+                
         } catch (\Exception $e) {
             $this->getLogger(__METHOD__)->error('Novalnet::updateOrderAmount', $e);
         }
-        
+       $order = $this->orderRepository->findOrderById($orderId);
+        $this->getLogger(__METHOD__)->error('RRRRRRRRRRRRRRRRRRRRR', $order); 
         
     }
     
