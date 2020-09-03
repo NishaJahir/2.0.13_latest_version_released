@@ -149,7 +149,8 @@ class RefundEventProcedure
 						$this->getLogger(__METHOD__)->error('parent amount', (float) ($parent_order_amount / 100 ) );
 						$this->getLogger(__METHOD__)->error('child amount', (float) $orderAmount);
 						$updatedAmount =  ( (float) ( $parent_order_amount / 100 ) ) - (float) $orderAmount;
-						$this->paymentHelper->updateOrderAmount($order->id, (float) $updatedAmount);
+						$updateOrder = $this->paymentHelper->updateOrderAmount($order->id, (float) $updatedAmount);
+						$this->getLogger(__METHOD__)->error('NNNNNNNNNRRRRRRRRRRRRRRRRRRRRR', $updateOrder); 
 							       
 					} else {
 						
