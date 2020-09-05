@@ -25,7 +25,7 @@ use Plenty\Modules\Basket\Contracts\BasketRepositoryContract;
 use Novalnet\Services\PaymentService;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\ConfigRepository;
-
+use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class PaymentController
@@ -34,7 +34,7 @@ use Plenty\Plugin\ConfigRepository;
  */
 class PaymentController extends Controller
 {
-    
+    use Loggable;
     /**
      * @var Request
      */
@@ -126,7 +126,9 @@ class PaymentController extends Controller
         if ($isPaymentSuccess) {
             $this->paymentService->pushNotification($notificationMessage, 'success', 100);
         } else {
-            $this->paymentService->pushNotification($notificationMessage, 'error', 100);    
+            $this->getLogger(__METHOD__)->error('response redirection', $responseData);
+            $this->paymentService->pushNotification($notificationMessage, 'error', 100);
+            return $this->response->redirectTo('checkout');
         }
         
         $responseData['test_mode'] = $this->paymentHelper->decodeData($responseData['test_mode'], $responseData['uniqid']);
