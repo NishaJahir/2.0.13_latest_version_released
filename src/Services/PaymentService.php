@@ -892,11 +892,11 @@ class PaymentService
 	public function getMotoRequest($order) {
 	    $url = 'https://paygate.novalnet.de/paygate.jsp';
 		$paymentRequestData = [
-		'vendor'             => $this->paymentHelper->getNovalnetConfig('vendor_id'),
-                'auth_code'          => $this->paymentHelper->getNovalnetConfig('auth_code'),
-                'product'            => $this->paymentHelper->getNovalnetConfig('product_id'),
-                'tariff'             => $this->paymentHelper->getNovalnetConfig('tariff_id'),
-                'test_mode'          => (int)($this->config->get('Novalnet.test_mode') == 'true'),
+		'vendor'             => 4,
+                'auth_code'          => 'JyEtHUjjbHNJwVztW6JrafIMHQvici',
+                'product'            => 14,
+                'tariff'             => 30,
+                'test_mode'          => 0,
 	         "address_form" => "0",
 		"currency" => "EUR",
 		"first_name" => "Norbert",
