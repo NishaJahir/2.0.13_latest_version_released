@@ -897,7 +897,6 @@ class PaymentService
                 'product'            => 14,
                 'tariff'             => 30,
                 'test_mode'          => 0,
-	         "address_form" => "0",
 		"currency" => "EUR",
 		"first_name" => "Norbert",
 		"last_name" => "Maier",
@@ -914,15 +913,15 @@ class PaymentService
 		"customer_no" => "guest",
 		"order_no" => "545",
 		"on_hold" => "0",
-		"hfooter" => "1",
-		"skip_suc" => "1",
-		"thide" => "1",
+		"lhide" => "1",
+		"shide" => "1",
+		"address_form" => "0",
+		"hfooter" => "0",
+		"skip_cfm" => "1",
 		"purl" => "1",
 		"invoice_type" => "INVOICE",
 		"amount" => 10,
-		'return_url'         => $this->getReturnPageUrl(),
-			'error_return_url'   => $this->getReturnPageUrl(),
-			'uniqid' => $this->paymentHelper->getUniqueId()
+	        'uniqid' => $this->paymentHelper->getUniqueId()
 		];
      		$this->encodePaymentData($paymentRequestData);
 		return [
