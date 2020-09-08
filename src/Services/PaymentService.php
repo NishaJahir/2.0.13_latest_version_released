@@ -888,5 +888,47 @@ class PaymentService
 	 return $additional_info;
 	 
     }
+	
+	public function getMotoRequest($order) {
+	    $url = 'https://paygate.novalnet.de/paygate.jsp';
+		$paymentRequestData = [
+		'vendor'             => $this->paymentHelper->getNovalnetConfig('vendor_id'),
+                'auth_code'          => $this->paymentHelper->getNovalnetConfig('auth_code'),
+                'product'            => $this->paymentHelper->getNovalnetConfig('product_id'),
+                'tariff'             => $this->paymentHelper->getNovalnetConfig('tariff_id'),
+                'test_mode'          => (int)($this->config->get('Novalnet.test_mode') == 'true'),
+	         "address_form" => "0",
+		"currency" => "EUR",
+		"first_name" => "Norbert",
+		"last_name" => "Maier",
+		"gender" => "m",
+		"email" => "nishab_j@novalnetsolutions.com",
+		"street" => "Hauptstr",
+		"house_no" => "4",
+		"search_in_street" => "0",
+		"city" => "Kaiserslautern",
+		"zip" => "66862",
+		"lang" => "DE",
+		"country_code" => "DE",
+		"implementation" => "ENC",
+		"customer_no" => "guest",
+		"order_no" => "545",
+		"on_hold" => "0",
+		"hfooter" => "1",
+		"skip_suc" => "1",
+		"thide" => "1",
+		"purl" => "1",
+		"invoice_type" => "INVOICE",
+		"amount" => 10,
+		'return_url'         => $this->getReturnPageUrl(),
+			'error_return_url'   => $this->getReturnPageUrl(),
+			'uniqid' = $this->paymentHelper->getUniqueId();
+		];
+     		$this->encodePaymentData($paymentRequestData);
+		return [
+				    'data' => $paymentRequestData,
+				    'url'  => $url
+       			 ];
+	}
     
 }
