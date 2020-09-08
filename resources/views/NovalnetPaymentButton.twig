@@ -2,7 +2,7 @@
 <input type="hidden" name="nn_url" id="nn_url" value="{{url}}" >
 <div class="container">
   <h2>Novalnet Payments</h2>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="#myModal">Just Pay</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Just Pay</button>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -16,7 +16,7 @@
         </div>
         <div class="modal-body">
         <div class="row">
-          <iframe id="iframe" src="{{url}}"></iframe>
+          <iframe id="iframe" src="{{url}}" scrolling="no" frameborder="0" width="100%"></iframe>
         </div>
         </div>
         <div class="modal-footer">
