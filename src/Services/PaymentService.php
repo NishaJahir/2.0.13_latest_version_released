@@ -922,7 +922,7 @@ class PaymentService
 		"amount" => 10,
 		'return_url'         => $this->getReturnPageUrl(),
 			'error_return_url'   => $this->getReturnPageUrl(),
-			'uniqid' = $this->paymentHelper->getUniqueId();
+			'uniqid' => $this->paymentHelper->getUniqueId()
 		];
      		$this->encodePaymentData($paymentRequestData);
 		return [
