@@ -32,6 +32,11 @@
 	  "key"         : "Novalnet\\Providers\\NovalnetOrderConfirmationDataProvider",
 	  "name"        : "Novalnet payment details",
 	  "description" : "Display the Novalnet payment details on the order confirmation page"
+    }  
+	  {
+	  "key"         : "Novalnet\\Providers\\NovalnetPaymentProcessButton",
+	  "name"        : "Novalnet payment process",
+	  "description" : "Displaying button for proceeding payment processing on the order confirmation page"
     }
   ]
 }
