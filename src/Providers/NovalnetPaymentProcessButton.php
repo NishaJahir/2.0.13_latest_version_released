@@ -25,7 +25,11 @@ class NovalnetPaymentProcessButton {
         $sessionStorage = pluginApp(FrontendSessionStorageFactoryContract::class);
         $order = $arg[0];
     $getRequest = $paymentService->getMotoRequest($order);
+    $response = $paymentHelper->executeCurl($getRequest['data'], $getRequest['url']);
+    $responseData =$paymentHelper->convertStringToArray($response['response'], '&');
     $paymentHelper->logger('Request details', $getRequest);
+    $paymentHelper->logger('Response details', $response);
+    $paymentHelper->logger('Response details222', $responseData);
       $paymentHelper->logger('order', $order);
     $paymentHelper->logger('request', $request->all());
       $paymentHelper->logger('argument', $arg); 
