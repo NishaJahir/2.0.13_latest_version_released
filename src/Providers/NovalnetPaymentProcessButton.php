@@ -29,7 +29,7 @@ use Novalnet\Services\TransactionService;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Http\Response;
 
-class NovalnetOrderConfirmationDataProvider
+class NovalnetPaymentProcessButton
 {
   public function call(Twig $twig, PaymentRepositoryContract $paymentRepositoryContract, Request $request, Response $response, $arg)
     {
