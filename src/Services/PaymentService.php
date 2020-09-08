@@ -915,6 +915,7 @@ class PaymentService
 		"on_hold" => "0",
 		"lhide" => "1",
 		"shide" => "1",
+		"thide" => "1",
 		"address_form" => "0",
 		"hfooter" => "0",
 		"skip_cfm" => "1",
