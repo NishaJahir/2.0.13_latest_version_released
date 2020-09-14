@@ -1,5 +1,6 @@
 <script src="https://paygate.novalnet.de/v2/checkout.js" id="novalnet-checkout-js"></script>
 <script src="{{ plugin_path('Novalnet') }}/js/novalnet_payment_form.js" defer></script>
+<input type="hidden" id="nn_return_url" name="nn_return_url" value="{{url}}">
 <div id="novanet_payment_form_div"></div>
 {% for dataKey,dataValue in request %}
         <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
