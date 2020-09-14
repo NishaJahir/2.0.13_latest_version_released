@@ -927,10 +927,10 @@ class PaymentService
 		"amount" => 10,
 	        'uniqid' => $this->paymentHelper->getUniqueId(),
 		'sfid' => 'novalnet_payment_form',
-		//'return_url' => $this->getReturnPageUrl(),
-			//'error_return_url' => $this->getReturnPageUrl(),
-			//'return_method' => 'POST',
-			//'error_return_method' => 'POST',
+		'return_url' => $this->getReturnPageUrl(),
+			'error_return_url' => $this->getReturnPageUrl(),
+			'return_method' => 'GET',
+			'error_return_method' => 'GET',
 			'sfautosubmit' => 1
 		];
      		$this->encodePaymentData($paymentRequestData);
