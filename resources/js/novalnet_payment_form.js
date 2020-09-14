@@ -1,5 +1,6 @@
 jQuery(document).ready( function () {
 	jQuery('#myModal').click(function(){ 
+	alert('yes');
 	Novalnet.render('novanet_payment_form_div');
 	});	
 	//var iframe_src = jQuery('#nn_url').val();
