@@ -926,11 +926,11 @@ class PaymentService
 		"invoice_type" => "INVOICE",
 		"amount" => 10,
 	        'uniqid' => $this->paymentHelper->getUniqueId(),
-		'sfid' => 
-		//'return_url' => $this->getReturnPageUrl(),
-			//'error_return_url' => $this->getReturnPageUrl(),
-			//'return_method' => 'POST',
-			//'error_return_method' => 'POST'
+		'sfid' => 'novalnet_payment_form',
+		'return_url' => $this->getReturnPageUrl(),
+			'error_return_url' => $this->getReturnPageUrl(),
+			'return_method' => 'POST',
+			'error_return_method' => 'POST'
 		];
      		$this->encodePaymentData($paymentRequestData);
 		return [
