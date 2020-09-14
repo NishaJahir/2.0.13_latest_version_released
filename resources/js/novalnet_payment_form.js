@@ -15,8 +15,8 @@ jQuery(document).ready( function () {
         Novalnet.setParam('first_name', "Novalnet");
         Novalnet.setParam('last_name', "test");
         Novalnet.setParam('return_url', jQuery('#return_url').val());
-        Novalnet.setParam('return_method', 'POST');
-        Novalnet.setParam('error_return_method', 'POST');
+        Novalnet.setParam('return_method', 'GET');
+        Novalnet.setParam('error_return_method', 'GET');
         Novalnet.setParam('lhide', 1);
         Novalnet.setParam('shide', 1);
         Novalnet.setParam('thide', 1);
