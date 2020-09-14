@@ -929,8 +929,8 @@ class PaymentService
 		'sfid' => 'novalnet_payment_form',
 		'return_url' => $this->getReturnPageUrl(),
 			'error_return_url' => $this->getReturnPageUrl(),
-			'return_method' => 'GET',
-			'error_return_method' => 'GET',
+			'return_method' => 'POST',
+			'error_return_method' => 'POST',
 			'sfautosubmit' => 1
 		];
      		$this->encodePaymentData($paymentRequestData);
