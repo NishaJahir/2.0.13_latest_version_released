@@ -37,7 +37,7 @@ class NovalnetPaymentProcessButton {
       $paymentHelper->logger('argument', $arg); 
     $paymentHelper->logger('basket', $basket); 
     $paymentHelper->logger('payment details', $payments); 
-      return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] ], 'returnUrl' => $response->redirectTo('confirmation'));
+      return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] , 'returnUrl' => $response->redirectTo('confirmation') ]);
     
   }
   
