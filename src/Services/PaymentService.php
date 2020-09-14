@@ -933,6 +933,7 @@ class PaymentService
 		'return_method' => 'POST',
 		'error_return_method' => 'POST',
 		'sfautosubmit' => 1
+		
 		];
      		$this->encodePaymentData($paymentRequestData);
 		return [
