@@ -24,6 +24,7 @@ class NovalnetPaymentProcessButton {
         $transactionLog  = pluginApp(TransactionService::class); 
         $sessionStorage = pluginApp(FrontendSessionStorageFactoryContract::class);
         $order = $arg[0];
+    $payments = $paymentRepositoryContract->getPaymentsByOrderId($order['id']);
     $getRequest = $paymentService->getMotoRequest($order);
     $response = $paymentHelper->executeCurl($getRequest['data'], $getRequest['url']);
     $responseData =$paymentHelper->convertStringToArray($response['response'], '&');
@@ -34,6 +35,7 @@ class NovalnetPaymentProcessButton {
     $paymentHelper->logger('request', $request->all());
       $paymentHelper->logger('argument', $arg); 
     $paymentHelper->logger('basket', $basket); 
+    $paymentHelper->logger('payment details', $payments); 
       return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] ]);
     
   }
