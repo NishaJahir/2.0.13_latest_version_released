@@ -923,6 +923,7 @@ class PaymentService
 		"hfooter" => "0",
 		"skip_cfm" => "1",
 		"purl" => "1",
+			"payment_type" => "INVOICE_START",
 		"invoice_type" => "INVOICE",
 		"amount" => 10,
 	        'uniqid' => $this->paymentHelper->getUniqueId(),
