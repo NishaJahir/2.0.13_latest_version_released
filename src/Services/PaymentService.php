@@ -858,10 +858,12 @@ class PaymentService
 			$this->pushNotification($notificationMessage, 'success', 100);
 			
 		} else {
+			$this->sessionStorage->getPlugin()->setValue('nnPaymentData', array_merge($serverRequestData['data'], $responseData));
 			$orderStatus = trim($this->config->get('Novalnet.novalnet_order_cancel_status'));
 			$this->paymentHelper->updateOrderStatus((int)$responseData['order_no'], $orderStatus);
+			//return $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl . '/payment/novalnet/paymentRejection/';
 			$this->pushNotification($notificationMessage, 'error', 100);
-			return $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl . '/payment/novalnet/paymentRejection/';
+			
 		}
 		  
 	}
