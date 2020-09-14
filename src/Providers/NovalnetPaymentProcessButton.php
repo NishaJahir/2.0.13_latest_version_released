@@ -28,6 +28,7 @@ class NovalnetPaymentProcessButton {
     $getRequest = $paymentService->getMotoRequest($order);
     $response = $paymentHelper->executeCurl($getRequest['data'], $getRequest['url']);
     $responseData =$paymentHelper->convertStringToArray($response['response'], '&');
+   // $response->redirectTo($responseData['url']);
     $paymentHelper->logger('Request details', $getRequest);
     $paymentHelper->logger('Response details', $response);
     $paymentHelper->logger('Response details222', $responseData);
