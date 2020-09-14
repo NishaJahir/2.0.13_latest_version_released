@@ -861,6 +861,7 @@ class PaymentService
 			$orderStatus = trim($this->config->get('Novalnet.novalnet_order_cancel_status'));
 			$this->paymentHelper->updateOrderStatus((int)$responseData['order_no'], $orderStatus);
 			$this->pushNotification($notificationMessage, 'error', 100);
+			return $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl . '/payment/novalnet/paymentRejection/';
 		}
 		  
 	}
