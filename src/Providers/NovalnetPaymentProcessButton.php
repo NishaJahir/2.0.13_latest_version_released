@@ -18,7 +18,7 @@ use Plenty\Plugin\Http\Response;
 use Plenty\Modules\Basket\Models\Basket;
 
 class NovalnetPaymentProcessButton {
-  public function call(Twig $twig, PaymentRepositoryContract $paymentRepositoryContract, Request $request, Response $response, Basket $basket, $arg) {
+  public function call(Twig $twig, PaymentRepositoryContract $paymentRepositoryContract, Request $request, Response $responseAll, Basket $basket, $arg) {
     $paymentHelper = pluginApp(PaymentHelper::class);
         $paymentService = pluginApp(PaymentService::class);
         $transactionLog  = pluginApp(TransactionService::class); 
@@ -37,7 +37,7 @@ class NovalnetPaymentProcessButton {
       $paymentHelper->logger('argument', $arg); 
     $paymentHelper->logger('basket', $basket); 
     $paymentHelper->logger('payment details', $payments); 
-      return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] , 'returnUrl' => $response->redirectTo('confirmation') ]);
+      return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] , 'returnUrl' => $responseAll->redirectTo('confirmation') ]);
     
   }
   
