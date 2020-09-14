@@ -927,7 +927,7 @@ class PaymentService
 		"invoice_type" => "INVOICE",
 		"amount" => 10,
 	        'uniqid' => $this->paymentHelper->getUniqueId(),
-		'sfid' => 'novalnet_payment_form',
+		'sfid' => 'nnIframe',
 		'return_url' => $this->getReturnPageUrl(),
 		'error_return_url' => $this->getReturnPageUrl(),
 		'return_method' => 'POST',
