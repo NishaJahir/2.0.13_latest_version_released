@@ -137,7 +137,7 @@ class PaymentController extends Controller
         $paymentRequestData = $this->sessionStorage->getPlugin()->getValue('nnPaymentData');
         $this->sessionStorage->getPlugin()->setValue('nnPaymentData', array_merge($paymentRequestData, $responseData));
         $this->paymentService->validateResponse();
-        //return $this->response->redirectTo('confirmation');
+        return $this->response->redirectTo('confirmation');
     }
 
     /**
