@@ -131,12 +131,15 @@ class PaymentController extends Controller
             $this->paymentService->pushNotification($notificationMessage, 'error', 100);
             return $this->response->redirectTo('checkout');
         }
-        
+        $this->paymentHelper->logger('redirect controller1', $isPaymentSuccess);
         $responseData['test_mode'] = $this->paymentHelper->decodeData($responseData['test_mode'], $responseData['uniqid']);
         $responseData['amount']    = $this->paymentHelper->decodeData($responseData['amount'], $responseData['uniqid']) / 100;
+        $this->paymentHelper->logger('redirect controller2', $isPaymentSuccess);
         $paymentRequestData = $this->sessionStorage->getPlugin()->getValue('nnPaymentData');
         $this->sessionStorage->getPlugin()->setValue('nnPaymentData', array_merge($paymentRequestData, $responseData));
+        $this->paymentHelper->logger('redirect controller3', $isPaymentSuccess);
         $this->paymentService->validateResponse();
+        $this->paymentHelper->logger('redirect controller4', $paymentRequestData);
         return $this->response->redirectTo('confirmation');
     }
 
@@ -225,6 +228,7 @@ class PaymentController extends Controller
     public function redirectPayment()
     {
         $paymentRequestData = $this->sessionStorage->getPlugin()->getValue('nnPaymentData');
+        $this->paymentHelper->logger('redirect controller', $paymentRequestData);
         $orderNo = $this->sessionStorage->getPlugin()->getValue('nnOrderNo');
         $paymentRequestData['order_no'] = $orderNo;
         $paymentUrl = $this->sessionStorage->getPlugin()->getValue('nnPaymentUrl');
