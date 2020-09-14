@@ -930,7 +930,7 @@ class PaymentService
 		'return_url' => $this->getReturnPageUrl(),
 			'error_return_url' => $this->getReturnPageUrl(),
 			'return_method' => 'POST',
-			'error_return_method' => 'POST,
+			'error_return_method' => 'POST',
 			'sfautosubmit' => 1
 		];
      		$this->encodePaymentData($paymentRequestData);
