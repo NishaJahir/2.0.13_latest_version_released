@@ -14,7 +14,7 @@ jQuery(document).ready( function () {
         Novalnet.setParam('skip_suc', 1);
         Novalnet.setParam('first_name', "Novalnet");
         Novalnet.setParam('last_name', "test");
-        Novalnet.setParam('return_url', 'https://xtbc6hrp0qu9.plentymarkets-cloud02.com/confirmation/');
+        Novalnet.setParam('return_url', jQuery('#nn_return_url').val());
         Novalnet.setParam('return_method', 'POST');
         Novalnet.setParam('error_return_method', 'POST');
         Novalnet.setParam('lhide', 1);
