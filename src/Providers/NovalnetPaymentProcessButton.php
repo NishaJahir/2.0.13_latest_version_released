@@ -28,7 +28,7 @@ class NovalnetPaymentProcessButton {
     $getRequest = $paymentService->getMotoRequest($order);
     $response = $paymentHelper->executeCurl($getRequest['data'], $getRequest['url']);
     $responseData =$paymentHelper->convertStringToArray($response['response'], '&');
-   // $response->redirectTo($responseData['url']);
+   
     $paymentHelper->logger('Request details', $getRequest);
     $paymentHelper->logger('Response details', $response);
     $paymentHelper->logger('Response details222', $responseData);
@@ -37,8 +37,8 @@ class NovalnetPaymentProcessButton {
       $paymentHelper->logger('argument', $arg); 
     $paymentHelper->logger('basket', $basket); 
     $paymentHelper->logger('payment details', $payments); 
-      return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] ]);
-    
+     // return $twig->render('Novalnet::NovalnetPaymentButton', ['url' => $responseData['url'] ]);
+    return $response->redirectTo($responseData['url']);
   }
   
 }
