@@ -1,5 +1,8 @@
 <script src="https://paygate.novalnet.de/v2/checkout.js"></script>
 <script src="{{ plugin_path('Novalnet') }}/js/novalnet_payment_form.js"></script>
 <div id="novanet_payment_form_div"></div>
-<input type="hidden" id="nn_request" name="nn_request" value="{{request}}">
+{% for dataKey,dataValue in request %}
+        <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
+    {% endfor %}
+
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="#myModal">Just Pay</button>
