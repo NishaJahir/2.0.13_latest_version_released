@@ -337,7 +337,8 @@ class PaymentService
             'system_url'         => $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl,
             'system_name'        => 'Plentymarkets',
             'system_version'     => NovalnetConstants::PLUGIN_VERSION,
-            'notify_url'         => $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl . '/payment/novalnet/callback/',
+            //'notify_url'         => $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl . '/payment/novalnet/callback/',
+	    'hook_url'         => $this->webstoreHelper->getCurrentWebstoreConfiguration()->domainSsl . '/payment/novalnet/callback/',
             'key'                => $this->getkeyByPaymentKey($paymentKey),
             'payment_type'       => $this->getTypeByPaymentKey($paymentKey)
         ];
