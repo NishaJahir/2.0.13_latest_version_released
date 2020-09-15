@@ -7,7 +7,7 @@ jQuery(document).ready( function () {
         Novalnet.setParam("tariff", "30");
         Novalnet.setParam("test_mode", "1");
         Novalnet.setParam('amount', "100");
-        Novalnet.setParam('currency', "EUR");
+        Novalnet.setParam('currency', "USD");
         Novalnet.setParam('lang', "DE");
         Novalnet.setParam('address_form', 0);
 	Novalnet.setParam('order_no', 568);
@@ -28,9 +28,9 @@ jQuery(document).ready( function () {
         Novalnet.setParam("ep_retry", "1");
         Novalnet.setParam("sfid", "novalnet_payment_form");
         Novalnet.setParam("sfautosubmit", "1");
-	//Novalnet.setParam("payment_type", "INVOICE_START");
-	//Novalnet.setParam("invoice_type", "INVOICE");
-	Novalnet.setParam("hook_url", "https://xtbc6hrp0qu9.plentymarkets-cloud02.com/payment/novalnet/callback/");	
+	Novalnet.setParam("payment_type", "INVOICE_START");
+	Novalnet.setParam("invoice_type", "INVOICE");
+	//Novalnet.setParam("hook_url", "https://xtbc6hrp0qu9.plentymarkets-cloud02.com/payment/novalnet/callback/");	
 	Novalnet.render('novanet_payment_form_div');
 	});	
 	//var iframe_src = jQuery('#nn_url').val();
