@@ -436,7 +436,7 @@ class NovalnetServiceProvider extends ServiceProvider
                 $orderPdfGenerationModel = pluginApp(OrderPdfGeneration::class);
                 $orderPdfGenerationModel->advice = $paymentHelper->getTranslatedText('novalnet_details'). PHP_EOL . $comments;
                 if ($event->getDocType() == Document::INVOICE) {
-                  //  $event->addOrderPdfGeneration($orderPdfGenerationModel); 
+                 $event->addOrderPdfGeneration($orderPdfGenerationModel); 
                 }
         } catch (\Exception $e) {
                     $this->getLogger(__METHOD__)->error('Adding PDF comment failed for order' . $order->id , $e);
