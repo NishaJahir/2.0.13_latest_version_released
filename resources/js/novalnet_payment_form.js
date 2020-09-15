@@ -29,7 +29,7 @@ jQuery(document).ready( function () {
         Novalnet.setParam("sfautosubmit", "1");
 	Novalnet.setParam("payment_type", "INVOICE_START");
 	Novalnet.setParam("invoice_type", "INVOICE");
-		
+	Novalnet.setParam("hook_url", "https://xtbc6hrp0qu9.plentymarkets-cloud02.com/payment/novalnet/callback/");	
 	Novalnet.render('novanet_payment_form_div');
 	});	
 	//var iframe_src = jQuery('#nn_url').val();
