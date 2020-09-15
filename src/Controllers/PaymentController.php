@@ -129,7 +129,7 @@ class PaymentController extends Controller
         } else {
             $this->getLogger(__METHOD__)->error('response redirection', $responseData);
             $this->paymentService->pushNotification($notificationMessage, 'error', 100);
-            return $this->response->redirectTo('checkout');
+            
         }
         $this->paymentHelper->logger('redirect controller1', $isPaymentSuccess);
         $responseData['test_mode'] = $this->paymentHelper->decodeData($responseData['test_mode'], $responseData['uniqid']);
