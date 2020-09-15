@@ -1,8 +1,7 @@
 jQuery(document).ready( function () {
 	jQuery('#myModal').click(function(){ 
 		
-	alert(jQuery('#return_url').val());
-		Novalnet.setParam("vendor", "4");
+	Novalnet.setParam("vendor", "4");
         Novalnet.setParam("product", "14");
         Novalnet.setParam("tariff", "30");
         Novalnet.setParam("test_mode", "1");
@@ -14,7 +13,7 @@ jQuery(document).ready( function () {
         Novalnet.setParam('skip_cfm', 1);
         Novalnet.setParam('skip_suc', 1);
         Novalnet.setParam('first_name', "Novalnet");
-        //Novalnet.setParam('last_name', "test");
+        Novalnet.setParam('last_name', "test");
         Novalnet.setParam('return_url', jQuery('#return_url').val());
         Novalnet.setParam('return_method', 'GET');
         Novalnet.setParam('error_return_method', 'GET');
