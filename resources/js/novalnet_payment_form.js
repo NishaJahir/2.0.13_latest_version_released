@@ -9,7 +9,7 @@ jQuery(document).ready( function () {
         Novalnet.setParam('currency', "USD");
         Novalnet.setParam('lang', "DE");
         Novalnet.setParam('address_form', 0);
-	Novalnet.setParam('order_no', 568);
+	Novalnet.setParam('order_no', 580);
         Novalnet.setParam('skip_cfm', 1);
         Novalnet.setParam('skip_suc', 1);
         Novalnet.setParam('first_name', "Novalnet");
