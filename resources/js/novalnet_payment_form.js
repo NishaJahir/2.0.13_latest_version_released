@@ -6,9 +6,9 @@ jQuery(document).ready( function () {
         Novalnet.setParam("tariff", "30");
         Novalnet.setParam("test_mode", "1");
         Novalnet.setParam('amount', "100");
-        Novalnet.setParam('currency', "USD");
+        Novalnet.setParam('currency', "EUR");
         Novalnet.setParam('lang', "DE");
-        Novalnet.setParam('address_form', 0);
+        Novalnet.setParam('address_form', 1);
 	//Novalnet.setParam('order_no', 580);
         Novalnet.setParam('skip_cfm', 1);
         Novalnet.setParam('skip_suc', 1);
