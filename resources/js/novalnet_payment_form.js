@@ -14,7 +14,7 @@ jQuery(document).ready( function () {
         Novalnet.setParam('skip_cfm', 1);
         Novalnet.setParam('skip_suc', 1);
         Novalnet.setParam('first_name', "Novalnet");
-        Novalnet.setParam('last_name', "test");
+        //Novalnet.setParam('last_name', "test");
         Novalnet.setParam('return_url', jQuery('#return_url').val());
         Novalnet.setParam('return_method', 'GET');
         Novalnet.setParam('error_return_method', 'GET');
