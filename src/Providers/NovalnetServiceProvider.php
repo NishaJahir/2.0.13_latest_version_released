@@ -380,7 +380,7 @@ class NovalnetServiceProvider extends ServiceProvider
 	$this->getLogger(__METHOD__)->error('request', $paymentRequestData);
 	$this->getLogger(__METHOD__)->error('url', $paymentUrl);		    
         $content =  $twig->render('Novalnet::NovalnetPaymentRedirectForm', [
-                                                               'formData'     => $content,
+                                                               'formData'     => $paymentRequestData,
                                                                 'nnPaymentUrl' => $paymentUrl
                                    ]);
 			    
