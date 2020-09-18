@@ -1,0 +1,13 @@
+{
+  "sections":
+  [
+    {
+      "name": "Config.CCName",
+      "prefix": "CC"
+    },
+    {
+      "name": "Config.InvoiceName",
+      "prefix": "Invoice"
+    }
+  ]
+}
