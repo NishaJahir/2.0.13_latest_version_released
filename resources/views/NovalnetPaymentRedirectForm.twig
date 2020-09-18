@@ -1,4 +1,4 @@
-<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}" onload="hideButton()">
+<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}" onsubmit="hideButton()">
     {% for dataKey,dataValue in formData %}
         <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
     {% endfor %}
@@ -10,8 +10,8 @@
 </form>
 
 <script type="text/javascript" >
-   function hideButton() {
-   document.getElementById("buttonId").style.display='none';
+   function onsubmit() {
+   document.getElementById("novalnet_form_btn").disabled=true;
    }
    document.getElementById('novalnet_redirect_form').submit();
    
