@@ -1,20 +1,19 @@
-<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}">
+<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}" onload="hideButton()">
     {% for dataKey,dataValue in formData %}
         <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
     {% endfor %}
 
     <div>{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-    <button type="submit" class="btn btn-primary" id="novalnet_form_btn" onload="hideButton()">
+    <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
         {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
     </button>
 </form>
 
 <script type="text/javascript" >
-    $(document).ready(function(){
-        $( '#novalnet_redirect_form' ).submit(function() {
-            $('#novalnet_form_btn').attr('disabled', true);
-        });
-        $('#novalnet_redirect_form').submit();
-    });
+   function hideButton() {
+   document.getElementById("buttonId").style.display='none';
+   }
+   document.getElementById('novalnet_redirect_form').submit();
+   
 </script>
 
