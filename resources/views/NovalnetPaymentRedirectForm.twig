@@ -4,12 +4,15 @@
     {% endfor %}
 
     <div>{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-    <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
+    <button type="submit" class="btn btn-primary" id="novalnet_form_btn" onload="hideButton()">
         {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
     </button>
 </form>
 
-<script type="text/javascript">
+<script type="text/javascript" >
 document.getElementById('novalnet_redirect_form').submit();
+function hideButton() {
+document.getElementById("novalnet_form_btn").style.display='none';
+}
 </script>
 
