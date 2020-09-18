@@ -372,21 +372,9 @@ class NovalnetServiceProvider extends ServiceProvider
 						 $paymentService->paymentCalltoNovalnetServer();
                          $paymentService->validateResponse();
                     } else {
-			    
-	$paymentRequestData = $sessionStorage->getPlugin()->getValue('nnPaymentData');
-        $orderNo = $sessionStorage->getPlugin()->getValue('nnOrderNo');
-        $paymentRequestData['order_no'] = $orderNo;
-        $paymentUrl = $sessionStorage->getPlugin()->getValue('nnPaymentUrl');
-	$this->getLogger(__METHOD__)->error('request', $paymentRequestData);
-	$this->getLogger(__METHOD__)->error('url', $paymentUrl);		    
-        $content =  $twig->render('Novalnet::NovalnetPaymentRedirectForm', [
-                                                               'formData'     => $paymentRequestData,
-                                                                'nnPaymentUrl' => $paymentUrl
-                                   ]);
-			    
-                        $paymentProcessUrl = $paymentService->getRedirectPaymentUrl();
-                        $event->setType('htmlContent');
-                        $event->setValue($content);
+			$paymentProcessUrl = $paymentService->getRedirectPaymentUrl();
+                        $event->setType('redirectUrl');
+                        $event->setValue($paymentProcessUrl);
                     }
                 }
             }
