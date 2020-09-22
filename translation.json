@@ -2,11 +2,11 @@
   "sections":
   [
     {
-      "name": "Config.CCName",
+      "name": "MultilingualismConfig.CCName",
       "prefix": "CC"
     },
     {
-      "name": "Config.InvoiceName",
+      "name": "MultilingualismConfig.InvoiceName",
       "prefix": "Invoice"
     }
   ],
