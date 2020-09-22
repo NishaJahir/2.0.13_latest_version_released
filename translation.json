@@ -9,9 +9,6 @@
       "name": "MultilingualismConfig.InvoiceName",
       "prefix": "Invoice"
     }
-  ],
-  "ignoredTranslationFiles":
-  [
-    "MultilingualismConfig.properties",
   ]
+ 
 }
