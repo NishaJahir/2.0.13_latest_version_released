@@ -3,11 +3,11 @@
   [
     {
       "name": "MultilingualismConfig.CCName",
-      "prefix": "CC"
+      "prefix": "CCName"
     },
     {
       "name": "MultilingualismConfig.InvoiceName",
-      "prefix": "Invoice"
+      "prefix": "InvoiceName"
     }
   ]
  
