@@ -1,4 +1,4 @@
-<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}" onkeydown="keydownFunction(e)>
+<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}" onkeydown="keydownFunction(e)">
     {% for dataKey,dataValue in formData %}
         <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
     {% endfor %}
