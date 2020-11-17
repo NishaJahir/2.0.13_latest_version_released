@@ -4,13 +4,13 @@
     {% endfor %}
 
     <div>{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-    <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
-        {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
-    </button>
+   // <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
+      //  {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
+   // </button>
 </form>
 
 <script type="text/javascript">
-   document.getElementById("novalnet_form_btn").disabled=true;
+   //document.getElementById("novalnet_form_btn").disabled=true;
    document.getElementById('novalnet_redirect_form').submit();
    document.addEventListener("keydown", keydownFunction);
    function keydownFunction(e) {
@@ -29,10 +29,10 @@
 				if (e.ctrlKey && e.keyCode == 85) {
 					e.preventDefault();
 				}
-				if (event.keyCode == 123) {
+				if (e.keyCode == 123) {
 					e.preventDefault();
 				}
-				if (e.which && e.ctrlKey && keycode == 82) {   
+				if (e.which && e.ctrlKey && e.keyCode == 82) {   
 					e.preventDefault();
 				}
      }
