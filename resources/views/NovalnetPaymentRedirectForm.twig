@@ -4,7 +4,7 @@
     {% endfor %}
 
     <div style="text-align:center;">{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-     <div id='nn_loader' style= "width:100%;height:100%;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"</div>
+    <div id='nn_loader' style= "width:100%;height:100%;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
     <!--
    <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
     {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
@@ -16,9 +16,6 @@
    //document.getElementById("novalnet_form_btn").disabled=true;
    document.getElementById('novalnet_redirect_form').submit();
    window.oncontextmenu = function (e) {
-    e.preventDefault(); 
-   }
-   window.onbeforeunload = function (e) {
     e.preventDefault(); 
    }
    document.addEventListener("keydown", keydownFunction);
