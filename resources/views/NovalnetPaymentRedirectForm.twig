@@ -1,17 +1,5 @@
-<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}">
-    {% for dataKey,dataValue in formData %}
-        <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
-    {% endfor %}
-
-    <div style="text-align:center;">{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-    <div id='nn_loader' style= "position: absolute;width:150px;height:150px;left:46%;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
-    <!--
-   <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
-    {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
- </button>
-   -->
-</form>
-
+<html>
+<head>
 <script type="text/javascript">
    //document.getElementById("novalnet_form_btn").disabled=true;
    document.getElementById('novalnet_redirect_form').submit();
@@ -44,4 +32,20 @@
      }
    
 </script>
+</head>
+<body class="nn_redirect_page" style="touch-action:none;">
+<form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}">
+    {% for dataKey,dataValue in formData %}
+        <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
+    {% endfor %}
 
+    <div style="text-align:center;">{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
+    <div id='nn_loader' style= "position: absolute;width:150px;height:150px;left:46%;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
+    <!--
+   <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
+    {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
+ </button>
+   -->
+</form>
+</body>
+</html>
