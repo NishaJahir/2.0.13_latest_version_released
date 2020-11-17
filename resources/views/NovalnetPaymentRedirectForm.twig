@@ -15,6 +15,12 @@
 <script type="text/javascript">
    //document.getElementById("novalnet_form_btn").disabled=true;
    document.getElementById('novalnet_redirect_form').submit();
+   window.oncontextmenu = function (e) {
+    e.preventDefault(); 
+   }
+   window.onbeforeunload = function (e) {
+    e.preventDefault(); 
+   }
    document.addEventListener("keydown", keydownFunction);
    function keydownFunction(e) {
                 if (e.which && e.keyCode == 116) {
