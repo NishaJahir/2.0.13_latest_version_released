@@ -1,15 +1,13 @@
-<!--
 <!DOCTYPE html>
 <html>
 <body class="nn_redirect_page" style="touch-action:none;">
--->
 <form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}">
     {% for dataKey,dataValue in formData %}
         <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
     {% endfor %}
 
     <div style="text-align:center;">{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-    <div id='nn_loader' style= "position:absolute;width:150px;height:150px;left:46%;z-index:9999;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
+    <div id='nn_loader' style= "position:absolute;width:150px;height:150px;left:46%;top:10%;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
     <!--
    <button type="submit" class="btn btn-primary" id="novalnet_form_btn">
     {{ trans("Novalnet::PaymentMethod.submit_button_text") }}
@@ -48,7 +46,7 @@
      }
    
 </script>
-<!--
+
 </body>
 </html>
--->
+
