@@ -94,3 +94,14 @@ margin-top: 14px;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+div
+{
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+  background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"
+}
