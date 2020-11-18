@@ -82,7 +82,7 @@ margin-top: 14px;
   width: 75px;
   height: 75px;
   margin-left: 45%;
-  margin-top: -100px;
+  margin-top: 2%;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
