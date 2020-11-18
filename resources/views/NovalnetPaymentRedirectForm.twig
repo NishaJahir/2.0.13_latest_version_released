@@ -10,8 +10,10 @@
     {% endfor %}
 
     <div style="text-align:center;">{{ trans("Novalnet::PaymentMethod.novalnet_redirect_text") }}</div>
-   <div class="test_loader"></div>
+ 
+   <div id='nn_loader' style= "background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
 <!--   
+  <div class="test_loader"></div>
 <div id='nn_loader' style= "position:relative;width:150px;height:150px;left:46%;top:10%;background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"></div>
     <div class="loader"></div>
     -->
