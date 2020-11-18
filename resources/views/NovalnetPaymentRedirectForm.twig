@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" href="{{plugin_path('Novalnet')}}/css/novalnet_ui.css">
 </head>
-<body class="nn_redirect_page" style="touch-action:none;">
+<body class="nn_redirect_page" style="overscroll-behavior:contain;">
 <form method="post" name="novalnet_redirect_form" id="novalnet_redirect_form"  action="{{nnPaymentUrl}}">
     {% for dataKey,dataValue in formData %}
         <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
