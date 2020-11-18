@@ -103,5 +103,5 @@ div
   left: 50%;
   margin-left: -150px;
   margin-top: -150px;
-  background: url('{{ plugin_path('Novalnet') }}/images/loading-icon.gif') no-repeat;"
+  background: url('../images/loading-icon.gif') no-repeat;
 }
